@@ -19,24 +19,24 @@ The main course project is an **e-commerce website** backed by a working databas
    Example:
 
    ```bash
-   cd /workspaces/c2c-full-stack-102/lesson-1
+   cd /workspaces/c2c-full-stack-102/lesson-01
    ```
 
-6. Open and follow the lesson instructions inside that folder (for example, `lesson-1/README.md`).
+6. Open and follow the lesson instructions inside that folder (for example, `lesson-01/README.md`).
 
 ## Lessons
 
 | Lesson    | Description (code-focused)                                                  | Folder                 |
 | --------- | --------------------------------------------------------------------------- | ---------------------- |
-| Lesson 1  | Create a React app and practice editing `App.js`.                           | [lesson-1](lesson-1)   |
-| Lesson 2  | Build a React music search app using an external API.                       | [lesson-2](lesson-2)   |
-| Lesson 3  | Use `useEffect` to retrieve/store an API token for requests.                | [lesson-3](lesson-3)   |
-| Lesson 4  | Fetch and render search results from an API (GET requests).                 | [lesson-4](lesson-4)   |
-| Lesson 5  | Set up a client/server project structure and connect the idea of databases. | [lesson-5](lesson-5)   |
-| Lesson 6  | Initialize a Node/Express server folder and add first routes.               | [lesson-6](lesson-6)   |
-| Lesson 7  | Connect MySQL from Node and insert form data into a table.                  | [lesson-7](lesson-7)   |
-| Lesson 8  | Write `SELECT` queries and build a search feature (React + API).            | [lesson-8](lesson-8)   |
-| Lesson 9  | Start the e-commerce project with a client/server setup and DB work.        | [lesson-9](lesson-9)   |
+| Lesson 1  | Create a React app and practice editing `App.js`.                           | [lesson-01](lesson-01) |
+| Lesson 2  | Build a React music search app using an external API.                       | [lesson-02](lesson-02) |
+| Lesson 3  | Use `useEffect` to retrieve/store an API token for requests.                | [lesson-03](lesson-03) |
+| Lesson 4  | Fetch and render search results from an API (GET requests).                 | [lesson-04](lesson-04) |
+| Lesson 5  | Set up a client/server project structure and connect the idea of databases. | [lesson-05](lesson-05) |
+| Lesson 6  | Initialize a Node/Express server folder and add first routes.               | [lesson-06](lesson-06) |
+| Lesson 7  | Connect MySQL from Node and insert form data into a table.                  | [lesson-07](lesson-07) |
+| Lesson 8  | Write `SELECT` queries and build a search feature (React + API).            | [lesson-08](lesson-08) |
+| Lesson 9  | Start the e-commerce project with a client/server setup and DB work.        | [lesson-09](lesson-09) |
 | Lesson 10 | Create a products table and build a GET endpoint to return products.        | [lesson-10](lesson-10) |
 | Lesson 11 | Work session: expand features and/or add another data table.                | [lesson-11](lesson-11) |
 | Lesson 12 | Implement cart CRUD: add, display, and remove cart items.                   | [lesson-12](lesson-12) |
@@ -48,4 +48,4 @@ The main course project is an **e-commerce website** backed by a working databas
 
 ## Repo structure
 
-- `lesson-1/`, `lesson-2/`, …: day-by-day lesson folders.
+- `lesson-01/`, `lesson-02/`, …: day-by-day lesson folders.

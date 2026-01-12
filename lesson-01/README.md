@@ -10,7 +10,7 @@
    ```
 3. Navigate to the Lesson 1 directory:
    ```bash
-   cd /workspaces/c2c-full-stack-102/lesson-1
+   cd /workspaces/c2c-full-stack-102/lesson-01
    pwd
    ```
 4. Create the React app inside this directory (this will create a new subfolder called `my-app`):
