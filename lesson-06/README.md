@@ -139,7 +139,7 @@ Connection info (dev container defaults):
 In Database Client, open a new query window for your MySQL connection and run:
 
 ```sql
-CREATE DATABASE IF NOT EXISTS lesson_06;
+CREATE DATABASE IF NOT EXISTS example;
 ```
 
 ### 3) Create a table
@@ -147,7 +147,7 @@ CREATE DATABASE IF NOT EXISTS lesson_06;
 Run the following (same query window is fine):
 
 ```sql
-USE lesson_06;
+USE example;
 
 CREATE TABLE IF NOT EXISTS pkm_info (
 	id INT NOT NULL AUTO_INCREMENT,
