@@ -125,9 +125,9 @@ Edit your existing route in `/workspaces/c2c-full-stack-102/lesson-07/app/server
 Example (update schema/table/column names to match yours):
 
 ```js
-app.get("/", (req, res) => {
+app.get("/insert", (req, res) => {
   const sqlInsert =
-    "INSERT INTO pkm_info (name, type) VALUES ('Pikachu', 'electric');";
+    "INSERT INTO customers (first_name, last_name, email, dob) VALUES ('John', 'Doe', 'johndoe@example.com', '03-13-90');";
 
   db.query(sqlInsert, (err, result) => {
     if (err) {
@@ -140,7 +140,7 @@ app.get("/", (req, res) => {
 });
 ```
 
-Run your server and hit `http://localhost:3001/` to confirm the row gets added.
+Run your server and hit `http://localhost:3001/insert` to confirm the row gets added.
 
 ## Section 1.3: Submit Function (React → API)
 
@@ -157,16 +157,18 @@ npm install
 
 In `App.js`:
 
-- Create two state variables (example: `pkmName` and `pkmType`)
-- Create a submit function (example: `submitPokemon`) that does a POST to `http://localhost:3001/api/insert`
+- Create four state variables (example: `firstName`, `lastName`, `email`, `dob`)
+- Create a submit function (example: `submitCustomer`) that does a POST to `http://localhost:3001/api/insert`
 
 Example shape:
 
 ```js
-const submitPokemon = () => {
+const submitCustomer = () => {
   Axios.post("http://localhost:3001/api/insert", {
-    pkmName: pkmName,
-    pkmType: pkmType,
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+    dob: dob,
   }).then(() => {
     alert("successful insert");
   });
@@ -189,12 +191,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 ```js
 app.post("/api/insert", (req, res) => {
-  const pkmName = req.body.pkmName;
-  const pkmType = req.body.pkmType;
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
+  const email = req.body.email;
+  const dob = req.body.dob;
 
-  const sqlInsert = "INSERT INTO pkm_info (name, type) VALUES (?, ?)";
+  const sqlInsert =
+    "INSERT INTO customers (first_name, last_name, email, dob) VALUES (?, ?, ?, ?)";
 
-  db.query(sqlInsert, [pkmName, pkmType], (err, result) => {
+  db.query(sqlInsert, [firstName, lastName, email, dob], (err, result) => {
     if (err) {
       console.log(err);
       return res.sendStatus(500);
@@ -214,14 +219,14 @@ In `/workspaces/c2c-full-stack-102/lesson-07/app/client/src/App.js`, update each
 ```js
 <input
   type="text"
-  name="pkmName"
+  name="firstName"
   onChange={(event) => {
-    setPkmName(event.target.value);
+    setFirstName(event.target.value);
   }}
 />
 ```
 
-Do the same for your type field.
+Do the same for `lastName`, `email`, and `dob`.
 
 ## Section 2.3: Testing (end-to-end)
 
