@@ -6,9 +6,11 @@ This guide is written to match the code in `lesson-09/app`.
 
 ## Folder Layout (Lesson 09)
 
-- **`app/client/`** – React frontend that renders the contact form and calls the API.
-- **`app/server/`** – Node/Express backend that exposes routes such as `POST /submit-form` and connects to MySQL.
-- **`app/docs/CRA_REFERENCE.md`** – Archived Create React App reference documentation.
+From inside `lesson-09/app`:
+
+- **`client/`** – React frontend that renders the contact form and calls the API.
+- **`server/`** – Node/Express backend that exposes routes such as `POST /submit-form` and connects to MySQL.
+- **`docs/CRA_REFERENCE.md`** – Archived Create React App reference documentation.
 
 ---
 
@@ -26,55 +28,69 @@ git pull
 
 ---
 
-## Install & Run
+## Setup (2 Terminals + `.env`)
 
-### Step 1: Start the Client
+1. Open **two terminals** in VS Code.
+2. In **Terminal 1 (Client)**, run:
 
 ```bash
-cd app/client
+cd /workspaces/c2c-full-stack-102/lesson-09/app/client
+```
+
+Create `client/.env` (you should already be in `/lesson-09/app/client`):
+
+```bash
+cat > .env <<'EOF'
+REACT_APP_API_BASE_URL=http://localhost:3001
+EOF
+```
+
+Start the client:
+
+```bash
 npm install
 npm start
 ```
 
 This launches the React app on **http://localhost:3000**.
 
-### Step 2: Start the Server
+3. In **Terminal 2 (Server)**, run:
 
 ```bash
-cd app/server
+cd /workspaces/c2c-full-stack-102/lesson-09/app/server
+```
+
+Create `server/.env` (you should already be in `/lesson-09/app/server`). Then update `DB_PASSWORD` and `DB_NAME` to match your local MySQL setup:
+
+```bash
+cat > .env <<'EOF'
+# Environment configuration for the Express server
+# update this file by providing your own database connection details (password and db_name).
+DB_HOST=127.0.0.1
+DB_USER=root
+DB_PASSWORD=password
+DB_NAME=ecommerce
+PORT=3001
+EOF
+```
+
+Start the server:
+
+```bash
 npm install
-# Lesson 9 uses mysql2. If you see "Cannot find module 'mysql2'", run:
-# npm install mysql2
 npm run dev
 ```
 
+If you see `EADDRINUSE: address already in use :::3001`, it means something is already running on port `3001`.
+
+- Option A: Stop the process using the port:
+
+```bash
+lsof -nP -iTCP:3001 -sTCP:LISTEN
+kill <PID>
+```
+
 This runs the Express server with `nodemon` on **http://localhost:3001**.
-
----
-
-## Environment Variables
-
-This project already uses `.env` files directly — no `.env.example` required.
-
-### In `app/server/.env`
-
-Update this file to match your local MySQL setup:
-
-```env
-DB_HOST=127.0.0.1
-DB_USER=root
-DB_PASSWORD=your_password
-DB_NAME=ecommerce
-PORT=3001
-```
-
-### In `app/client/.env`
-
-Make sure your frontend knows where to find your backend:
-
-```env
-REACT_APP_API_BASE_URL=http://localhost:3001
-```
 
 ---
 
@@ -101,7 +117,7 @@ If you already have a MySQL connection saved in the VS Code Database panel, you 
 
 1. Open the **Database** view (the database icon in the Activity Bar).
 2. Click **+** (New Connection) → choose **MySQL**.
-3. Fill in values that match your `app/server/.env`:
+3. Fill in values that match your `server/.env`:
    - **Host:** `127.0.0.1`
    - **Port:** `3306`
    - **User:** `root` (or your MySQL user)
@@ -134,7 +150,7 @@ If the extension prompts you to choose a default database, select **`ecommerce`*
 
 ## Section 2.3 – Connect to the Database and Add the POST Route
 
-Open **`app/server/index.js`**.
+Open **`server/index.js`**.
 
 The starter currently contains a placeholder `POST /submit-form` route that returns `501 Not implemented yet`.
 
@@ -194,7 +210,7 @@ app.listen(PORT, () => {
 
 ## Section 2.4 – Connect the React Contact Form
 
-Open **`app/client/src/components/contactForm.jsx`**.  
+Open **`client/src/components/contactForm.jsx`**.  
 This component already collects the form data in state and sends it to the server using Axios.
 
 You can enhance it by adding simple feedback messages for users:
@@ -241,7 +257,7 @@ const handleSubmit = (event) => {
 
 Then:
 
-1. Start both apps (`npm start` in `app/client`, `npm run dev` in `app/server`).
+1. Start both apps (`npm start` in `client`, `npm run dev` in `server`).
 2. Visit your contact page and submit the form.
 3. In the VS Code Database view, refresh the `ecommerce` schema and confirm a new row appears in `contact`.
 
@@ -252,7 +268,7 @@ Then:
 | Lesson Section                                 | Description                                                |
 | ---------------------------------------------- | ---------------------------------------------------------- |
 | **Lesson 9: Ecommerce Project Intro / Do Now** | Locate your FS1 project or use this template.              |
-| **Section 1.1: File Setup**                    | Work inside `app/client` and `app/server`.                 |
+| **Section 1.1: File Setup**                    | Work inside `client` and `server`.                         |
 | **Section 1.2: Moving Files**                  | Verify both run correctly.                                 |
 | **Section 2.1: Features that Need a Database** | Discuss which parts of the site will need a DB.            |
 | **Section 2.2: Contact Form**                  | Create `contact` table for form submissions.               |
@@ -263,8 +279,8 @@ Then:
 
 ## Verification Steps
 
-✅ `npm start` in `app/client` → loads on port 3000  
-✅ `npm run dev` in `app/server` → runs on port 3001  
+✅ `npm start` in `client` → loads on port 3000  
+✅ `npm run dev` in `server` → runs on port 3001  
 ✅ Submitting form → row appears in `ecommerce.contact` (viewable in the VS Code Database panel)  
 ✅ Server returns `201` for a successful insert
 
